@@ -1,0 +1,56 @@
+#include<stack>
+bool isBalanced(string expression){
+    stack<char>str;
+    for(int i=0;i<expression.length();i++){
+        if(expression[i]=='{' || expression[i]=='(' || expression[i]=='[' ){
+            str.push(i);
+        }
+        else{
+            return false;
+        }
+    }
+    char x=str.top();
+    if(x==str.pop()){
+        continue;
+    }
+    else{
+        return false;
+    }
+}
+
+
+APPROACH 2
+# include<stack>
+stack<char>s;
+bool isBalanced(string expression) 
+{
+    // Write your code here
+    for(int i=0;i<expression.length();i++)
+    {
+       // cout<<expression[i]<<" ";
+        if(expression[i]=='(')
+        {
+            s.push(expression[i]);
+            //cout<<s.top()<<" ";
+        }
+        else
+        {
+            if(s.size()==0)
+            {
+                return false;
+            }
+            if(expression[i]!= s.top())
+            {
+                s.pop();
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+   if(s.size()==0)
+   {
+       return true;
+   }
+}
